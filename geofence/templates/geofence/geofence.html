@@ -1,46 +1,17 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <canvas id="myCanvas" width="400px" height="400px" style="border: 1px solid black">Browser does not support canvas</canvas>
-    <script>
-        const canvasEle = document.getElementById('myCanvas');
-const context = canvasEle.getContext('2d');
-let startPosition = {x: 0, y: 0};
-let lineCoordinates = {x: 0, y: 0};
-
-const getClientOffset = (event) => {
-    const {pageX, pageY} = event.touches ? event.touches[0] : event;
-    const x = pageX - canvasEle.offsetLeft;
-    const y = pageY - canvasEle.offsetTop;
-
-    return {
-       x,
-       y
-    } 
-}
-
-const mouseDownListener = (event) => {
-    startPosition = getClientOffset(event);
-}
-
-const mouseUpListener = (event) => {
-    lineCoordinates = getClientOffset(event);
-    console.log(lineCoordinates.x, lineCoordinates.y);
-    context.beginPath();
-   context.moveTo(startPosition.x, startPosition.y);
-   context.lineTo(lineCoordinates.x, lineCoordinates.y);
-   context.stroke();
-}
-
-canvasEle.addEventListener('mousedown', mouseDownListener);
-canvasEle.addEventListener('mouseup', mouseUpListener);
-    </script>
-</body>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Canvas Demo</title>
+        <!-- <script src="canvas.js"></script> -->
+    </head>
+    <body>
+        <script src="{% static 'canvas.js' %}"></script>
+        <canvas id="myCanvas" width="400" height="400" style="border:1px solid black;">
+            Your browser does not support the HTML canvas tag.</canvas><br>
+        <a href="trial">trial</a>
+        <script src="{% static 'draw.js' %}"></script>
+    </body>
 </html>
