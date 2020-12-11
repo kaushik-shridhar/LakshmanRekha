@@ -56,7 +56,7 @@ void send_data() {
 
   post_data = "ssid=" + send_ssid + "&rssi=" + send_rssi;
 
-  http.begin("http://192.168.1.5:8000/tracking/"); // connect to the host where the server is hosted
+  http.begin("http://192.168.1.5:8000/tracking/"); // connect to the host where the server is hosted(IP needs to be updated)
   http.addHeader("Content-Type", "application/x-www-form-urlencoded"); // specify the content-type header
 
   int http_code = http.POST(post_data);
