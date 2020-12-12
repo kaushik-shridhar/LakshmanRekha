@@ -17,8 +17,12 @@ from django.contrib import admin
 from django.urls import include, path
 
 urlpatterns = [
-    path('', include('login.urls')),
+    # ex: /
+    path('', include('main.urls')),
+    # ex: /canvas/
     path('canvas/', include('geofence.urls')),
+    # ex: /tracking/
     path('tracking/', include('tracking.urls')),
+    # ex: /admin/
     path('admin/', admin.site.urls),
 ]

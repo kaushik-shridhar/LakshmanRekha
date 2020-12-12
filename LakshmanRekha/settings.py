@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.1.5']
 # Application definition
 
 INSTALLED_APPS = [
+    'main.apps.MainConfig',
     'login.apps.LoginConfig',
     'geofence.apps.GeofenceConfig',
     'tracking.apps.TrackingConfig',
@@ -123,6 +124,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, '../geofence/static')
+    os.path.join(BASE_DIR, '../geofence/static'),
+    os.path.join(BASE_DIR, '../main/static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
