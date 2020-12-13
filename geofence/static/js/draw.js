@@ -1,4 +1,3 @@
-
 const canvasEle = document.getElementById('myCanvas');
 const context = canvasEle.getContext('2d');
 let startPosition = {x: 0, y: 0};
@@ -28,6 +27,8 @@ const mouseUpListener = (event) => {
     context.moveTo(startPosition.x, startPosition.y);
     context.lineTo(lineCoordinates.x, lineCoordinates.y);
     context.stroke();
+    console.log(start_point);
+    console.log(end_point);
     i++;
 }
 
