@@ -34,14 +34,16 @@ void scan_wifi() {
     Serial.println("No networks found");
   } else {
     for (int i=0;i<n;i++) {
-      Serial.print("WiFi SSID : ");
-      ssid = WiFi.SSID(i);
-      Serial.println(ssid);
-      Serial.print("WiFi RSSI : ");
-      rssi = WiFi.RSSI(i);
-      Serial.println(rssi);
-      //send_data();
-      Serial.println("-------------------------");
+        Serial.print("WiFi SSID : ");
+        ssid = WiFi.SSID(i);
+        if (ssid == "Shridhar") {
+        Serial.println(ssid);
+        Serial.print("WiFi RSSI : ");
+        rssi = WiFi.RSSI(i);
+        Serial.println(rssi);
+        //send_data();
+        Serial.println("-------------------------");
+      }
     }
   }
 }

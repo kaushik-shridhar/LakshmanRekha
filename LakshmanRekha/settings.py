@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.1.5']
 # Application definition
 
 INSTALLED_APPS = [
+    'django_eventstream',
     'main.apps.MainConfig',
     'login.apps.LoginConfig',
     'geofence.apps.GeofenceConfig',
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django_grip.GripMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -80,8 +82,11 @@ WSGI_APPLICATION = 'LakshmanRekha.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'lakshman_rekha',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost'
     }
 }
 
@@ -124,7 +129,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, '../main/static'),
     os.path.join(BASE_DIR, '../geofence/static'),
-    os.path.join(BASE_DIR, '../main/static')
+    os.path.join(BASE_DIR, '../main/static'),
+    os.path.join(BASE_DIR, '../tracking/static')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+
+# pushpin
+GRIP_URL = 'http://localhost:5561'
+
+# fanout cloud
+GRIP_URL = 'http://api.fanout.io/realm/your-realm?iss=your-realm&key=base64:your-realm-key'

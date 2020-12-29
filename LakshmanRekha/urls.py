@@ -19,10 +19,6 @@ from django.urls import include, path
 urlpatterns = [
     # ex: /
     path('', include('main.urls')),
-    # ex: /canvas/
-    path('canvas/', include('geofence.urls')),
-    # ex: /tracking/
-    path('tracking/', include('tracking.urls')),
     # ex: /admin/
     path('admin/', admin.site.urls),
 ]
