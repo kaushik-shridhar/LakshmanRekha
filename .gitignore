@@ -1,0 +1,12 @@
+# Environments
+env/
+
+# vscode
+.vscode/
+
+# mac os:
+.DS_STORE
+
+# Djano:
+db.sqlite3
+
