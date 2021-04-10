@@ -6,7 +6,3 @@ env/
 
 # mac os:
 .DS_STORE
-
-# Djano:
-/LakshmanRekha/db.sqlite3
-
