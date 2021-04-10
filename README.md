@@ -1,5 +1,8 @@
 # LakshmanRekha
 <p align="center">Geofencing using IOT(GOT)</p>
+
+<iframe width="100%" height="100%" src="https://drive.google.com/file/d/1mhQ6JXNDs80DfBCLhZ6ST3ZBmKoXHtMJ/preview"></iframe>
+
 <p align="center">Since the outbreak of covid-19, the situation of India has worsened to an extent where we have around 80,000+ active cases coming up daily, and hence we cannot affort to put at stake the lives of our essential workers. Reports of various attempts of patients sneaking out of the hospitals have raised the concern of increasing the potential spread of virus.</p>
 
 **LakshmanRekha** is a web based application which works along with a watch **Jatayu** consisting of an esp12 chip which helps in monitoring of covid affected patients by tracking their movements and making sure they do not leave the established geofence, also alerting the authorities in case of a breach in the geofence.
