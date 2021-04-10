@@ -1,0 +1,291 @@
+<!-- page to create geofence -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Create Geofence</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		var URL = "{% url 'my_view_that_sends_coordinates' %}";
+		var URL_2 = "{% url 'add_ap' %}";
+	</script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+	</script>
+	<!-- Google fonts -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link
+		href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato&family=Montserrat&family=Open+Sans&family=Poppins&family=Quicksand:wght@300&family=Roboto&display=swap"
+		rel="stylesheet">
+
+	<!-- Bootstrap -->
+	<!-- CSS only -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+	<!-- css -->
+	<link rel="stylesheet" href="{% static 'css/display_maps.css' %}">
+</head>
+
+<body>
+
+	<br>
+	<br>
+
+	<div class="col-md-4">
+		<h1 class="edit-heading">Draw the geofence</h1>
+		<br>
+		<img src="/geofence{{ map_image }}" style="width: 300px;" alt="400" id="img">
+	</div>
+
+	<script>
+
+		var start_point = [];
+		var end_point = [];
+		var i = 0;
+		console.log(start_point);
+
+	</script>
+
+	<canvas id="myCanvas" width="600" height="600" style="border:1px solid white; display: block;" >
+		Your browser does not support the HTML canvas tag.
+	</canvas><br>
+	<canvas id="newCanvas" width="600" height="600" style="border:1px solid white; display: none;">
+		Your browser does not support the HTML canvas tag.
+	</canvas><br>
+
+	<script>
+		var canvasEle = document.getElementById('newCanvas');
+		var context = canvasEle.getContext('2d');
+		// var startPosition = { x: 0, y: 0 };
+		// var lineCoordinates = { x: 0, y: 0 };
+		context.drawImage(img, 0, 0, canvasEle.width, canvasEle.height);
+		$("#newCanvas").click(function(e){
+			getPosition(e); 
+	   });
+	   
+	   var pointSize = 3;
+	   
+	   function getPosition(event){
+			var rect = newCanvas.getBoundingClientRect();
+			var x = event.clientX - rect.left;
+			var y = event.clientY - rect.top;
+			console.log(x, y);
+			var data = {
+				'x_coord': x,
+				'y_coord': y,
+			}
+			$.post(URL_2, data, function (response) {
+				if (response === 'Sucess') { }
+				else if (response === 'FAIL!!!') { alert('Error! :('); }
+				else { }
+			});
+			drawCoordinates(x,y);
+	   }
+	   
+	   function drawCoordinates(x,y){	
+			 var ctx = document.getElementById("newCanvas").getContext("2d");
+	   
+	   
+			 ctx.fillStyle = "#ff2626"; // Red color
+	   
+		   ctx.beginPath();
+		   ctx.arc(x, y, pointSize, 0, Math.PI * 2, true);
+		   ctx.fill();
+	   }
+	</script>
+
+	<script>
+
+		var canvasEle = document.getElementById('myCanvas');
+		var context = canvasEle.getContext('2d');
+		var startPosition = { x: 0, y: 0 };
+		var lineCoordinates = { x: 0, y: 0 };
+		context.drawImage(img, 0, 0, canvasEle.width, canvasEle.height);
+
+		var getClientOffset = (event) => {
+			var { pageX, pageY } = event.touches ? event.touches[0] : event;
+			var x = pageX - canvasEle.offsetLeft;
+			var y = pageY - canvasEle.offsetTop;
+
+			return {
+				x, y
+			}
+		}
+
+		var mouseDownListener = (event) => {
+			startPosition = getClientOffset(event);
+		}
+
+		var mouseUpListener = (event) => {
+			lineCoordinates = getClientOffset(event);
+			start_point[i] = [startPosition.x, startPosition.y];
+			end_point[i] = [lineCoordinates.x, lineCoordinates.y];
+			var data_2 = {
+				'start_x': startPosition.x,
+				'start_y': startPosition.y,
+				'end_x': lineCoordinates.x,
+				'end_y': lineCoordinates.y
+			}
+			$.post(URL, data_2, function (response) {
+				if (response === 'Sucess') { }
+				else if (response === 'FAIL!!!') { alert('Error! :('); }
+				else { alert('vataaaaa XD'); }
+			});
+			//console.log(start_point);
+			context.beginPath();
+			context.moveTo(startPosition.x, startPosition.y);
+			context.lineTo(lineCoordinates.x, lineCoordinates.y);
+			context.lineWidth = 2;
+			context.strokeStyle = 'red';
+			context.stroke();
+			console.log(start_point);
+			console.log(end_point);
+			i++;
+		}
+
+		context.drawImage(img, 0, 0, canvasEle.width, canvasEle.height);
+		canvasEle.addEventListener('mousedown', mouseDownListener);
+		canvasEle.addEventListener('mouseup', mouseUpListener);
+
+
+	</script>
+	<div class="grid-container">
+		<div id="together" class="horizontal-center">
+			<form action="/geofence/add_ap/" method="POST" id="ap_details" style="display: none;">
+				<input type="text" name="ssid" id="ssid" placeholder="SSID1, SSID2, SSID3"><br>
+				<input type="text" name="mp" id="mp" placeholder="MP1, MP2, MP3"><br>
+			</form><br>
+			<button id="clearthecanva1" onclick="clearcanvas1()" style="display: block;" >Clear Geofence</button>
+			<button id="clearthecanva2" onclick="clearcanvas2()" style="display: none;" >Clear AP</button>
+			<button id="ap" onclick="enableForm()">Add AP</button>
+			<form id="together" method="post" enctype="multipart/form-data" action="/geofence/display_maps/">
+				<button id="passcoords">Pass the coordinates</button>
+			</form>
+		</div>
+
+	</div><br><br><br><br>
+
+	<div>
+		
+		<button name="clear" id="clear" onclick="clearAp()" style="display: none;">Clear</button>
+		<!-- <button name="preview" id="preview" onclick="plotAp()" style="display: none;">preview</button> -->
+		<button name="cancel" id="cancel" onclick="cancel()" style="display: none;">cancel</button>
+	</div>
+
+	<script>
+		function sendCoordinates() {
+			var ssid = document.getElementById("ssid").value;
+			var mp = document.getElementById("mp").value;
+			var data_1 = {
+				'start_coordinates': start_point,
+				'end_coordinates': end_point,
+				'ssid': ssid,
+				'mp': mp,
+				'floor_name': '{{ floor_name }}'
+			}
+			$.post(URL, data_1, function (response) {
+				if (response === 'Sucess') { alert('Sucess :)'); }
+				else { alert('Error! :('); }
+			});
+		}
+		function clearcanva_fence() {
+			var data = { 'clearcanva_fence': 'clearcanva_fence' }
+			$.post(URL, data, function (response) {
+				if (response === 'Sucess') {/*alert ('Sucess :)'); */ }
+				else { alert('Error! :('); }
+			});
+		}
+		function clearcanva_points() {
+			var data = { 'clearcanva_points': 'clearcanva_points' }
+			$.post(URL, data, function (response) {
+				if (response === 'Sucess') {/*alert ('Sucess :)'); */ }
+				else { alert('Error! :('); }
+			});
+		}
+		$(document).ready(function () {
+			$('#passcoords').click(function () {
+				sendCoordinates();
+			});
+
+		});
+		$(document).ready(function () {
+			$('#clearthecanva1').click(function () {
+				clearcanva_fence();
+			});
+
+		});
+		$(document).ready(function () {
+			$('#clearthecanva2').click(function () {
+				clearcanva_points();
+			});
+
+		});
+	</script>
+	<script>
+		function clearcanvas1() {
+			var canvas = document.getElementById('myCanvas');
+			ctx = canvas.getContext("2d");
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			start_point = [];
+			end_point = [];
+			ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+			i = 0;
+		}
+		function clearcanvas2() {
+			var canvas = document.getElementById('newCanvas');
+			ctx = canvas.getContext("2d");
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			start_point = [];
+			end_point = [];
+			ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+			i = 0;
+		}
+	</script>
+
+	<script>
+		function clearAp() {
+			clearcanvas1();
+			document.getElementById("clear").style.display = "none";
+			document.getElementById("preview").style.display = "block";
+		}
+
+// Plot ap removed from here(available in developers edition if any problem comes)
+
+		function cancel() {
+			document.getElementById("ap_details").style.display = "none";
+			document.getElementById("preview").style.display = "none";
+			document.getElementById("cancel").style.display = "none";
+			document.getElementById("clear").style.display = "none";
+		}
+
+		function enableForm() {
+			if(document.getElementById("newCanvas").style.display == "block"){
+				document.getElementById("clearthecanva2").style.display = "none";
+				document.getElementById("clearthecanva1").style.display = "block";
+				document.getElementById("newCanvas").style.display = "none";
+				document.getElementById("myCanvas").style.display = "block";
+				document.getElementById("ap_details").style.display = "none";
+				document.getElementById("preview").style.display = "none";
+				document.getElementById("cancel").style.display = "none";
+			}
+			else{
+				document.getElementById("clearthecanva2").style.display = "block";
+				document.getElementById("clearthecanva1").style.display = "none";
+				document.getElementById("newCanvas").style.display = "block";
+				document.getElementById("myCanvas").style.display = "None";
+				document.getElementById("ap_details").style.display = "block";
+				document.getElementById("preview").style.display = "block";
+				document.getElementById("cancel").style.display = "block";
+			}
+			
+		}
+	</script>
+</body>
+
+</html>

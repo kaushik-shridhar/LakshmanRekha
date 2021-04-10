@@ -1,0 +1,271 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <title>Geofence</title>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
+      </script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+      </script>
+      <!-- Google fonts -->
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato&family=Montserrat&family=Open+Sans&family=Poppins&family=Quicksand:wght@300&family=Roboto&display=swap"
+        rel="stylesheet">
+    
+      <!-- Bootstrap -->
+      <!-- CSS only -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      <!-- JS, Popper.js, and jQuery -->
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+      <!-- Bootstrap -->
+        <!-- CSS only -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <!-- JS, Popper.js, and jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    
+      <!-- css -->
+      <link rel="stylesheet" href="{% static 'css/how_it_works.css' %}">
+    </head>
+    
+    <body class="login-page">
+      <!-- Navbar section -->
+      <div class="nav-head">
+        <nav class="navbar navbar-expand-lg ">
+          <a class="navbar-brand" href="/">Lakshman Rekha</a>
+          <button class="navbar-toggler btn-outline-light" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+          </button>
+    
+          <div class="collapse home-nav-collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="home-nav-link nav-link" href="/functionality/">How it works</a>
+              </li>
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="home-nav-link nav-link" href="/patients/">Patients</a>
+              </li>
+              <li class="nav-item">
+                <a class="home-nav-link nav-link" href="/geofence/">Create</a>
+              </li>
+              <li class="nav-item">
+                <a class="home-nav-link nav-link" href="/geofence/display_maps/">Show all maps</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="home-nav-link nav-link" href="/functionality/">How it works</a>
+              </li>
+              <li class="nav-item">
+                <a class="home-nav-link nav-link" href="/register/">Register</a>
+              </li>
+              {% endif %}
+    
+              <!-- <li class="nav-item">
+                <a class="home-nav-link nav-link" href="/about/">About us</a>
+              </li> -->
+              <li class="nav-item">
+                <a class="home-nav-link nav-link" href="/contact_us/">Contact us</a>
+              </li>
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="home-nav-link nav-link" href="/logout/">Logout</a>
+              </li>
+              {% endif %}
+            </ul>
+          </div>
+        </nav>
+      </div>
+<section>
+    <div id="app-features" class="section">
+      <div class="container">
+        <div class="section-header">   
+          <p class="btn btn-subtitle wow fadeInDown" data-wow-delay="0.2s">STEP 1</p>       
+          <h2 class="section-title ">How to set up your Hardware?</h2>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-md-12 col-xs-12">
+            <div class="content-left text-right">
+              <div class="box-item left">
+                <div class="text">
+                  <h1 class="txt1"><svg class="imgg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                    width="38" height="38"
+                    viewBox="0 0 172 172"
+                    style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g><path d="M157.66667,86c0,39.57433 -32.09233,71.66667 -71.66667,71.66667c-39.57433,0 -71.66667,-32.09233 -71.66667,-71.66667c0,-39.57433 32.09233,-71.66667 71.66667,-71.66667c39.57433,0 71.66667,32.09233 71.66667,71.66667z" fill="#f1c40f"></path><path d="M93.16667,114.66667h-12.65275v-41.41975l-12.43058,3.73742v-9.85417l23.92233,-8.51042h1.161z" fill="#ffffff"></path></g></g></svg>Start the Node MCU</h1>
+                  <p class="pleft">It’ll try to connect to a previously connected wifi, if it fails to connect, due to not finding a wifi with those credentials, then it’ll go into access point mode, and turn into an access point.</p>
+                </div>
+              </div>
+              <div class="box-item left">
+                <div class="text">
+                  <h1 class="txt1"><svg class="imgg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                    width="38" height="38"
+                    viewBox="0 0 172 172"
+                    style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g><path d="M157.66667,86c0,39.57433 -32.09233,71.66667 -71.66667,71.66667c-39.57433,0 -71.66667,-32.09233 -71.66667,-71.66667c0,-39.57433 32.09233,-71.66667 71.66667,-71.66667c39.57433,0 71.66667,32.09233 71.66667,71.66667z" fill="#f1c40f"></path><path d="M103.91667,114.66667h-38.28433v-8.53908l17.62283,-19.10633c4.35375,-5.0955 6.52167,-9.14108 6.52167,-12.15108c0,-2.42233 -0.51958,-4.28208 -1.54083,-5.54342c-1.03558,-1.27208 -2.51908,-1.90275 -4.4935,-1.90275c-1.93142,0 -3.50092,0.85283 -4.70492,2.54775c-1.204,1.69492 -1.806,3.80908 -1.806,6.3425h-12.73158c0,-3.47225 0.8385,-6.66142 2.51908,-9.60333c1.69492,-2.93833 4.01692,-5.23525 7.01258,-6.9015c2.98133,-1.65192 6.32817,-2.47608 10.02258,-2.47608c5.91967,0 10.49917,1.41542 13.70267,4.24267c3.20708,2.81292 4.80167,6.8585 4.80167,12.15108c0,2.22525 -0.40492,4.39675 -1.204,6.49658c-0.81342,2.11417 -2.05683,4.32508 -3.75175,6.63633c-1.69492,2.322 -4.42183,5.418 -8.20225,9.3095l-7.08425,8.41367h21.60033z" fill="#ffffff"></path></g></g></svg>Wifi details</h1>
+                  <p class="pleft">Once the Node MCU goes into access point mode, it’ll be shown as a wifi called ‘jatayu’.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12 col-xs-12">
+            <div class="show-box">
+              <img src="{% static 'images/phone.svg' %}" alt="" width="300px" height="500px">
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12 col-xs-12">
+            <div class="content-right text-left">
+              <div class="box-item marg right">
+                <div class="text">
+                  <h1 class="txt1"><svg class="imgg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                    width="38" height="38"
+                    viewBox="0 0 172 172"
+                    style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g><path d="M157.66667,86c0,39.57433 -32.09233,71.66667 -71.66667,71.66667c-39.57433,0 -71.66667,-32.09233 -71.66667,-71.66667c0,-39.57433 32.09233,-71.66667 71.66667,-71.66667c39.57433,0 71.66667,32.09233 71.66667,71.66667z" fill="#f1c40f"></path><path d="M77.54692,80.61067h5.91967c4.69058,0 7.04125,-2.35067 7.04125,-7.08425c0,-1.83467 -0.559,-3.3325 -1.68058,-4.4935c-1.12158,-1.161 -2.70183,-1.74867 -4.73,-1.74867c-1.66625,0 -3.10675,0.50525 -4.33942,1.49783c-1.23267,0.99258 -1.849,2.22525 -1.849,3.70875h-12.556c0,-2.93833 0.79908,-5.54342 2.37933,-7.85108c1.59458,-2.29692 3.80908,-4.08858 6.622,-5.375c2.81292,-1.28642 5.91967,-1.93142 9.29517,-1.93142c6.03433,0 10.77867,1.41542 14.23658,4.257c3.45792,2.82725 5.17792,6.71875 5.17792,11.6745c0,2.408 -0.71308,4.67625 -2.15717,6.80117c-1.41542,2.1285 -3.50092,3.86283 -6.22783,5.19225c2.88458,1.06425 5.1385,2.70183 6.77608,4.86975c1.63758,2.20017 2.46175,4.88767 2.46175,8.1055c0,4.98442 -1.86333,8.95833 -5.58642,11.954c-3.73742,2.98133 -8.6215,4.47917 -14.68092,4.47917c-3.55467,0 -6.84417,-0.69875 -9.88283,-2.0855c-3.053,-1.40108 -5.34633,-3.3325 -6.91583,-5.77992c-1.56592,-2.47967 -2.35067,-5.27825 -2.35067,-8.41367h12.62408c0,1.70925 0.67367,3.19275 2.01742,4.43617c1.34375,1.26133 2.99567,1.87408 4.95575,1.87408c2.21092,0 3.97392,-0.63067 5.29258,-1.88842c1.31508,-1.26133 1.97442,-2.88458 1.97442,-4.84467c0,-2.81292 -0.67367,-4.80167 -2.0425,-5.977c-1.36883,-1.17533 -3.26083,-1.763 -5.6545,-1.763h-6.11675v-9.61408z" fill="#ffffff"></path></g></g></svg>Connect</h1>
+                  <p class="pleft">Use any device to connect to how2electronics.</p>
+                </div>
+              </div>
+              <div class="box-item right">
+                <div class="text">
+                  <h1 class="txt1"><svg class="imgg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                    width="38" height="38"
+                    viewBox="0 0 172 172"
+                    style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g><path d="M157.66667,86c0,39.57433 -32.09233,71.66667 -71.66667,71.66667c-39.57433,0 -71.66667,-32.09233 -71.66667,-71.66667c0,-39.57433 32.09233,-71.66667 71.66667,-71.66667c39.57433,0 71.66667,32.09233 71.66667,71.66667z" fill="#f1c40f"></path><path d="M96.793,92.2565h7.16667v10.24475h-7.16667v12.16542h-13.56292v-12.16542h-21.41758l-0.81342,-8.11983l22.22742,-36.94058v-0.1075h13.56292v34.92317zM72.67358,92.2565h10.55292v-17.63717l-0.85283,1.34375z" fill="#ffffff"></path></g></g></svg>Completion of Process</h1>
+                  <p class="pleft">Once connected, open a browser, and enter <a class="pleftlink" href="http://127.0.0.1:8000/static/images/jatayu.jpeg">192.168.4.1</a> in the address bar, and then fill the required details.
+                    This will complete the configuration process.
+                    </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    
+  <section class="software">
+    <div id="app-features" class="s">
+      <div class="container">
+        <div class="section-header">   
+          <p class="btn btn-subtitle wow fadeInDown" data-wow-delay="0.2s">STEP 2</p>       
+          <h2 class="section-title ">How the Software works?</h2>
+        </div>
+
+        <div class="row row1">
+          <div class="box-item1 col-sm-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon"><i class="bx bxl-dribbble"></i></div>
+              <h1 class="title">1. Register</h1>
+              <p class="description">Register as an organization in the website</p>
+            </div>
+          </div>
+
+          <div class="box-item1 col-sm-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+              <div class="icon"><i class="bx bx-file"></i></div>
+              <h1 class="title">2. Login</h1>
+              <p class="description">Login to the Website</p>
+            </div>
+          </div>
+
+          <div class="box-item1 col-sm-2 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+              <div class="icon"><i class="bx bx-tachometer"></i></div>
+              <h1 class="title">3. Create</h1>
+              <p class="description">Choose the Create Geofence option</p>
+            </div>
+          </div>
+
+          <div class="box-item1 col-sm-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+              <div class="icon"><i class="bx bx-world"></i></div>
+              <h1 class="title">4. Upload Image</h1>
+              <p class="description">Add the image of the indoor map of the floor in which you want to create the geofence along with the floor name.</p>
+            </div>
+          </div>
+
+        </div>
+        <div class="row row1">
+          <div class="box-item1 col-md-3 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon"><i class="bx bxl-dribbble"></i></div>
+              <h1 class="title">5. Add AP</h1>
+              <p class="description">After you’ll be redirected to the create geofence section,
+                  choose add AP and enter the ssid and mp of the wifi points, and mark the points on the map.
+                </p>
+            </div>
+          </div>
+
+          <div class="box-item1 col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
+              <div class="icon"><i class="bx bx-file"></i></div>
+              <h1 class="title">6. Draw the Geofence</h1>
+              <p class="description">Hit add AP to add the points, then draw the geofence on the map and choose pass the coordinates to save the geofence.</p>
+            </div>
+          </div>
+
+          <div class="box-item1 col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
+              <div class="icon"><i class="bx bx-tachometer"></i></div>
+              <h1 class="title">7. Live Tracking</h1>
+             
+              <p class="description">To check the created geofences, go to show all maps section and
+                choose the live tracking button in the show all geofence section to see the live location of the patients.
+                </p>
+            </div>
+          </div>
+
+          <div class="box-item1 col-md-6 col-lg-2 d-flex align-items-stretch mb-5 mb-lg-0">
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
+              <div class="icon"><i class="bx bx-world"></i></div>
+              <h1 class="title">8. Notification</h1>
+              <p class="description">Notifications will pop up when there is a breach in the geofence.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    <br><br><br><br><br><br>
+    <!-- features Section End -->
+<!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <!-- <script src="js/jquery-min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/owl.carousel.js"></script> 
+    <script src="js/jquery.mixitup.js"></script>       
+    <script src="js/jquery.nav.js"></script>    
+    <script src="js/scrolling-nav.js"></script>    
+    <script src="js/jquery.easing.min.js"></script>     
+    <script src="js/wow.js"></script>   
+    <script src="js/jquery.counterup.min.js"></script>     
+    <script src="js/nivo-lightbox.js"></script>     
+    <script src="js/jquery.magnific-popup.min.js"></script>     
+    <script src="js/waypoints.min.js"></script>      
+    <script src="js/form-validator.min.js"></script>
+    <script src="js/contact-form-script.js"></script>   
+    <script src="js/main.js"></script>
+     -->
+  </body>
+</html>

@@ -1,0 +1,105 @@
+/* Home Page */
+body {
+  background-image: linear-gradient(to right,#182633,#000);
+}
+
+/* Navbar section */
+.navbar {
+  padding: 2rem 2rem 2rem;
+  padding-right: 2rem;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.navbar-brand:hover {
+  color:#F2A929;
+}
+
+.navbar-brand {
+  color:#fff;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 2rem;
+}
+
+.home-nav-collapse {
+  color: white;
+}
+
+.nav-item{
+    margin: 1rem;
+    
+}
+.nav-link{
+  color: #fff;
+}
+
+.nav-link:hover {
+  color:#F2A929;
+}
+
+/* Title section */
+.title-text {
+  font-family: 'Quicksand', sans-serif;
+  color: #fff;
+  font-size: 2rem;
+  margin-left: 2rem;
+  padding-top: 5rem;
+}
+
+.title-section {
+  padding-bottom: 7rem;
+  padding-top: 2rem;
+}
+
+.btn {
+  margin-top: 1rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  padding-right: 2.2rem;
+  padding-left: 2.2rem;
+  margin-left: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+}
+
+.btn-light{
+  background: #F2A929;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: #263E53;
+}
+
+.btn-outline-light{
+  background-color: #000;
+  border: #fff;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: #fff;
+}
+
+.but-text1 {
+  text-decoration: none;
+  color: #fff; 
+}
+
+.but-text1:hover {
+  background: #000;
+  color: #fff;
+}
+
+.but-text2 {
+  text-decoration: none;
+  color: #fff;
+}
+
+.but-text2:hover {
+  color: black;
+}
+
+.buttons {
+  padding-top: 1rem;
+  padding-left: 1rem;
+}
+
+.watch-img{
+  size: 3rem;
+}

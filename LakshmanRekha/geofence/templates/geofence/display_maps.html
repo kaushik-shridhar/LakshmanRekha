@@ -1,0 +1,106 @@
+<!-- page to display all maps -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Display maps</title>
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato&family=Montserrat&family=Open+Sans&family=Poppins&family=Quicksand:wght@300&family=Roboto&display=swap"
+    rel="stylesheet">
+
+
+  <!-- Bootstrap -->
+  <!-- CSS only -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <!-- JS, Popper.js, and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+
+  <!-- css -->
+  <link rel="stylesheet" href="{% static 'css/display_maps.css' %}">
+</head>
+
+<body>
+
+  <!-- Navbar section -->
+  <div>
+    <nav class="navbar navbar-expand-lg ">
+      <a class="navbar-brand" href="/">Lakshman Rekha</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"><i class="fas home-fa-bars fa-bars"></i></span>
+      </button>
+      <div class="collapse home-nav-collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="home-nav-link nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="home-nav-link nav-link" href="/functionality/">How it works</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="home-nav-link nav-link " href="/geofence/">Create</a>
+          </li>
+          <li class="nav-item">
+            <a class="home-nav-link nav-link active" href="/geofence/display_maps/">Show all maps</a>
+          </li>
+          {% endif %}
+          <!-- <li class="nav-item">
+            <a class="home-nav-link nav-link" href="/about/">About us</a>
+          </li> -->
+          <li class="nav-item">
+            <a class="home-nav-link nav-link" href="/contact_us/">Contact us</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div id="together">
+    {% for map in map_images %}
+    {% if map.user == user.username %}
+    <div class="col-md-4 grid-container">
+      <p class="map-name">{{ map.name }}</p>
+      <form action="/geofence/create_geofence/" method="POST">
+        <br>
+        <img src="/geofence{{ map.geofence_locn.url }}" class="img-responsive"
+          style="width: 400px;  margin-right: 10px;" alt="500">
+        <br>
+        <input type="hidden" name="hidden_locn" value="{{ map.upload_locn.url }}">
+        <input class="register-left edit-btn" type="submit" value="Edit">
+      </form>
+      <form action="/geofence/delete_geofence/" method="POST">
+        <input type="hidden" name="hidden_locn" value="{{ map.upload_locn.url }}">
+        <input class="register-left delete-btn" type="submit" value="Delete">
+      </form>
+      <form action="/tracking/sse/" method="POST">
+        <input type="hidden" name="hidden_geofence_locn" value="{{ map.geofence_locn.url }}">
+        <input class="register-left delete-btn" type="submit" value="Tracking">
+      </form>
+
+    </div>
+
+    {% endif %}
+    {% endfor %}
+  </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!-- login page -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css\login-regis-styles.css' %}" type="text/css">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+
+<body class="login-page">
+    <div>
+        <div class="row">
+            <div class="col-md-6 login-left order-2 order-md-1">
+                <h1>Login</h1>
+                <div class="login-form">
+                    <form action="/login/" method="POST">
+                        <input type="text" class="form-control" name="org_name" placeholder="Organization Name"><br>
+                        <input type="password" class="form-control" name="pass" placeholder="Password"><br>
+                        <input type="submit" class="btn login-btn btn-primary" value="Login">
+                    </form>
+                </div>
+                <p class="login-below-writeup">Don't have an Account? <a href="/register/" class="link">Create New!</a>
+                </p>
+            </div>
+            <div class="col-md-6 login-right order-1 order-md-2">
+                <div>
+                    <img src="{% static 'images/map.svg' %}">
+                </div>
+                <h3>Welcome Back to Lakshman Rekha!</h3>
+                <p>Login to your Account! </p>
+                <a href="/"><button type="button" class="btn btn-primary">LEARN MORE</button></a>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    </div>
+</body>
+
+</html>
