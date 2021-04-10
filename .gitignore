@@ -8,5 +8,5 @@ env/
 .DS_STORE
 
 # Djano:
-LakshmanRekha/db.sqlite3
+/LakshmanRekha/db.sqlite3
 
