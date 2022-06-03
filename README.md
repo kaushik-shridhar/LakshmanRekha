@@ -37,7 +37,7 @@ python manage.py runserver
 ## 📈 How It Works
 
 Location Setup: 
-![lisa](https://github.com/kaushik-shridhar/LakshmanRekha/blob/2ee6ba005d5613200c86292151c1922a7277f925/Working%20Video/location_setup.mp4)
+![lisa](Working Video/location_setup.mp4)
 
 
 
