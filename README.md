@@ -36,7 +36,7 @@ python manage.py runserver
 
 ## 📈 How It Works
 
-Working: 
+Working:<br>
 ![lisa](https://github.com/kaushik-shridhar/LakshmanRekha/blob/0f4635a3fc7e273804793e8096be671e8214e56e/working.mp4)
 
 
